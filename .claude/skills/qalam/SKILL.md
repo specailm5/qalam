@@ -1,6 +1,6 @@
 ---
-name: arabic-workflow-skill
-description: "Intent router and workflow skill for the Arabic skill suite. Loads first, identifies what the user actually wants (genre, deliverable, audience, medium, risk), then selects the smallest correct set of Arabic skills and their load order. Keeps arabic-writing-skill (anti-العرنجية) and arabic-grammar-skill as the always-on baseline, adds arabic-editing-skill as the final pass, and routes to story, screenwriting, children's tales, essay, academic, translation, khutba, media, copywriting or balagha only when the request requires them. Contains the registry of all skill repository URLs and install commands. Does not write the content itself. Use when the user asks for any Arabic writing, editing, translation, analysis or religious/media/academic text and you must decide which skill(s) to load. Triggers: «أي مهارة»، «وجّه الطلب»، «اختر المهارة»، «workflow»، «router»، «which skill»، or any open-ended Arabic writing request."
+name: qalam
+description: "Intent router and skill-selection guide for the Arabic skill suite. Loads first, identifies what the user actually wants (genre, deliverable, audience, medium, risk), then selects the smallest correct set of Arabic skills and their load order. Keeps arabic-writing-skill (anti-العرنجية) and arabic-grammar-skill as the always-on baseline, adds arabic-editing-skill as the final pass, and routes to story, screenwriting, children's tales, essay, academic, translation, khutba, media, copywriting or balagha only when the request requires them. Contains the registry of all skill repository URLs and install commands. Does not write the content itself. Use when the user asks for any Arabic writing, editing, translation, analysis or religious/media/academic text and you must decide which skill(s) to load. Triggers: «أي مهارة»، «وجّه الطلب»، «اختر المهارة»، «workflow»، «router»، «which skill»، or any open-ended Arabic writing request."
 license: MIT
 metadata:
     type: meta-skill
@@ -9,12 +9,14 @@ metadata:
     registry-schema: 1
     always-load: arabic-writing-skill, arabic-grammar-skill
     final-pass: arabic-editing-skill
-    github-path: .agents/skills/arabic-workflow-skill
+    github-path: .agents/skills/qalam
     github-ref: refs/heads/master
-    github-repo: https://github.com/specailm5/arabic-workflow-skill
+    github-repo: https://github.com/specailm5/qalam
 ---
 
-# مهارة توجيه المهارات العربية
+# قلم (Qalam)
+
+> مهارة توجيه المهارات العربية.
 
 > **دورها:** تُحمَّل أولاً، تفهم الطلب، تختار المهارات، ثم تسلّم.
 > **لا تكتب المحتوى بنفسها.** ولا تُحمِّل كل المهارات. ولا تُخمِّن النية بلا دليل.
@@ -308,7 +310,7 @@ cautions:
 
 ```bash
 # ١. مهارة التوجيه
-npx skills add specailm5/arabic-workflow-skill -g -y
+npx skills add specailm5/qalam -g -y
 
 # ٢. خط الأساس (إلزامي)
 npx skills add specailm5/arabic-writing-skill -g -y

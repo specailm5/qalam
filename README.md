@@ -1,17 +1,19 @@
-# مهارة توجيه المهارات العربية
-### (Arabic Workflow / Intent Router Skill)
+# قلم (Qalam)
+
+**مهارة توجيه المهارات العربية**  
+(Arabic Skill Guide & Intent Router)
 
 <p align="center">
-  <a href="https://github.com/specailm5/arabic-workflow-skill/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/specailm5/arabic-workflow-skill?style=flat-square"></a>
-  <a href="https://github.com/specailm5/arabic-workflow-skill/commits/master"><img alt="Last commit" src="https://img.shields.io/github/last-commit/specailm5/arabic-workflow-skill?style=flat-square"></a>
-  <a href="https://specailm5.github.io/arabic-workflow-skill/"><img alt="Docs" src="https://img.shields.io/badge/docs-live-brightgreen?style=flat-square"></a>
+  <a href="https://github.com/specailm5/qalam/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/specailm5/qalam?style=flat-square"></a>
+  <a href="https://github.com/specailm5/qalam/commits/master"><img alt="Last commit" src="https://img.shields.io/github/last-commit/specailm5/qalam?style=flat-square"></a>
+  <a href="https://specailm5.github.io/qalam/"><img alt="Docs" src="https://img.shields.io/badge/docs-live-brightgreen?style=flat-square"></a>
   <img alt="Agent Skills" src="https://img.shields.io/badge/Agent%20Skills-compatible-5B21B6?style=flat-square">
   <img alt="Meta skill" src="https://img.shields.io/badge/type-meta--skill-0F766E?style=flat-square">
 </p>
 
 **Arabic intent-router for AI agents** — loads first, reads the request, and selects the smallest correct set of Arabic skills: `«اكتب حكاية للأطفال»` → `children-story` + `writing` + `grammar` + `editing`, not all thirteen. It contains the registry of every repository URL and install command. It does not write the content itself.
 
-🔗 **الموقع المرجعي (السجل والتوجيه والأمثلة): [specailm5.github.io/arabic-workflow-skill](https://specailm5.github.io/arabic-workflow-skill/)**
+🔗 **الموقع المرجعي (السجل والتوجيه والأمثلة): [specailm5.github.io/qalam](https://specailm5.github.io/qalam/)**
 
 > مهارة **ميتا** لنماذج الذكاء الاصطناعي والمحررات الذكية (Codex، Claude Code، Antigravity IDE، VS Code Agent Harness): تُحمَّل أولاً، تحدد نية المستخدم، ثم تختار المهارات وترتّب تحميلها. **خط الأساس:** `arabic-writing-skill` (نبذ العَرَنْجِيَّة) + `arabic-grammar-skill`، و**التمرير النهائي:** `arabic-editing-skill`.
 
@@ -176,9 +178,9 @@ cautions: ["حدث واحد، لا تقرير."]
 ## 📂 بنية المستودع
 
 <pre dir="rtl"><code>
-arabic-workflow-skill/
+qalam/
 │
-├── skills/arabic-workflow-skill/          # المهارة (تركيب Agent Skills القياسي)
+├── skills/qalam/          # المهارة (تركيب Agent Skills القياسي)
 │   ├── SKILL.md                           # قواعد التوجيه فقط
 │   ├── references/
 │   │   ├── registry.json                  # سجل الآلة: الروابط والتثبيت والمحفزات
@@ -191,9 +193,9 @@ arabic-workflow-skill/
 │
 ├── docs/                                  # الموقع المرجعي (GitHub Pages)
 │
-├── .agents/skills/arabic-workflow-skill/  # مسار Codex و Antigravity
+├── .agents/skills/qalam/  # مسار Codex و Antigravity
 │
-└── .claude/skills/arabic-workflow-skill/  # مسار Claude Code
+└── .claude/skills/qalam/  # مسار Claude Code
 </code></pre>
 
 ---
@@ -203,13 +205,13 @@ arabic-workflow-skill/
 ### الطريقة الأسرع
 
 ```bash
-npx skills add specailm5/arabic-workflow-skill -g -y
+npx skills add specailm5/qalam -g -y
 ```
 
 ### مع خط الأساس
 
 ```bash
-npx skills add specailm5/arabic-workflow-skill -g -y
+npx skills add specailm5/qalam -g -y
 npx skills add specailm5/arabic-writing-skill -g -y
 npx skills add specailm5/arabic-grammar-skill -g -y
 npx skills add specailm5/arabic-editing-skill -g -y
@@ -226,30 +228,30 @@ npx skills add specailm5/arabic-essay-skill -g -y
 ### التثبيت اليدوي (Windows)
 
 ```powershell
-$src = "skills\arabic-workflow-skill"
+$src = "skills\qalam"
 
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\skills\arabic-workflow-skill"
-Copy-Item -Recurse -Force "$src\*" "$env:USERPROFILE\.claude\skills\arabic-workflow-skill\"
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\skills\qalam"
+Copy-Item -Recurse -Force "$src\*" "$env:USERPROFILE\.claude\skills\qalam\"
 
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills\arabic-workflow-skill"
-Copy-Item -Recurse -Force "$src\*" "$env:USERPROFILE\.agents\skills\arabic-workflow-skill\"
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills\qalam"
+Copy-Item -Recurse -Force "$src\*" "$env:USERPROFILE\.agents\skills\qalam\"
 ```
 
 ### التثبيت اليدوي (macOS / Linux)
 
 ```bash
-src=skills/arabic-workflow-skill
+src=skills/qalam
 
-mkdir -p ~/.claude/skills/arabic-workflow-skill
-cp -r "$src/." ~/.claude/skills/arabic-workflow-skill/
+mkdir -p ~/.claude/skills/qalam
+cp -r "$src/." ~/.claude/skills/qalam/
 
-mkdir -p ~/.agents/skills/arabic-workflow-skill
-cp -r "$src/." ~/.agents/skills/arabic-workflow-skill/
+mkdir -p ~/.agents/skills/qalam
+cp -r "$src/." ~/.agents/skills/qalam/
 ```
 
 ### الاستخدام اليدوي
 
-انسخ محتوى [`skills/arabic-workflow-skill/SKILL.md`](skills/arabic-workflow-skill/SKILL.md) إلى **التعليمات المخصصة** أو **System Prompt**، وثبّت خط الأساس.
+انسخ محتوى [`skills/qalam/SKILL.md`](skills/qalam/SKILL.md) إلى **التعليمات المخصصة** أو **System Prompt**، وثبّت خط الأساس.
 
 ---
 
@@ -421,7 +423,7 @@ cp -r "$src/." ~/.agents/skills/arabic-workflow-skill/
 
 ## 📬 الدعم
 
-للأسئلة والاقتراحات: [افتح قضية](https://github.com/specailm5/arabic-workflow-skill/issues).
+للأسئلة والاقتراحات: [افتح قضية](https://github.com/specailm5/qalam/issues).
 
 ---
 

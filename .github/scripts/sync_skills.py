@@ -3,15 +3,15 @@
 Sync Skills Script (sync_skills.py)
 -----------------------------------
 Synchronizes the Agent Skills payload across the three discovery locations:
-  1. skills/arabic-workflow-skill/  (canonical source - the standard Agent Skills
+  1. skills/qalam/  (canonical source - the standard Agent Skills
      layout, discovered by both `npx skills` and `gh skill`)
      - SKILL.md
      - references/
      - examples/
      - scripts/   (if present)
      - resources/ (if present)
-  2. .agents/skills/arabic-workflow-skill/
-  3. .claude/skills/arabic-workflow-skill/
+  2. .agents/skills/qalam/
+  3. .claude/skills/qalam/
 
 Resolution Strategy:
 - When a file differs across the three locations:
@@ -48,9 +48,9 @@ REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 
 # Tuple of (location_name, relative_base_path, priority_index)
 LOCATIONS: List[Tuple[str, Path, int]] = [
-    ("skills", REPO_ROOT / "skills" / "arabic-workflow-skill", 0),
-    ("agents", REPO_ROOT / ".agents" / "skills" / "arabic-workflow-skill", 1),
-    ("claude", REPO_ROOT / ".claude" / "skills" / "arabic-workflow-skill", 2),
+    ("skills", REPO_ROOT / "skills" / "qalam", 0),
+    ("agents", REPO_ROOT / ".agents" / "skills" / "qalam", 1),
+    ("claude", REPO_ROOT / ".claude" / "skills" / "qalam", 2),
 ]
 
 
