@@ -1,6 +1,6 @@
 ---
 name: arabic-workflow-skill
-description: "Intent router and workflow skill for the Arabic skill suite. Loads first, identifies what the user actually wants (genre, deliverable, audience, medium, risk), then selects the smallest correct set of Arabic skills and their load order. Keeps arabic-writing-skill (anti-العرنجية) and arabic-grammar-skill as the always-on baseline, adds arabic-editing-skill as the final pass, and routes to story, screenwriting, children, essay, academic, translation, khutba, media, copywriting or balagha only when the request requires them. Contains the registry of all skill repository URLs and install commands. Does not write the content itself. Use when the user asks for any Arabic writing, editing, translation, analysis or religious/media/academic text and you must decide which skill(s) to load. Triggers: «أي مهارة»، «وجّه الطلب»، «اختر المهارة»، «workflow»، «router»، «which skill»، or any open-ended Arabic writing request."
+description: "Intent router and workflow skill for the Arabic skill suite. Loads first, identifies what the user actually wants (genre, deliverable, audience, medium, risk), then selects the smallest correct set of Arabic skills and their load order. Keeps arabic-writing-skill (anti-العرنجية) and arabic-grammar-skill as the always-on baseline, adds arabic-editing-skill as the final pass, and routes to story, screenwriting, children's tales, essay, academic, translation, khutba, media, copywriting or balagha only when the request requires them. Contains the registry of all skill repository URLs and install commands. Does not write the content itself. Use when the user asks for any Arabic writing, editing, translation, analysis or religious/media/academic text and you must decide which skill(s) to load. Triggers: «أي مهارة»، «وجّه الطلب»، «اختر المهارة»، «workflow»، «router»، «which skill»، or any open-ended Arabic writing request."
 license: MIT
 metadata:
     type: meta-skill
@@ -45,10 +45,10 @@ metadata:
 | :--- | :--- | :--- |
 | **النوع** | ما جنس النص؟ | قصة، مقال، خبر، خطبة، ترجمة |
 | **المخرج** | ماذا يريد؟ | مسودة، مخطط، نقد، تحرير، ترجمة |
-| **الجمهور** | لمن؟ | أطفال، أكاديميون، جمهور عام |
+| **الجمهور** | لمن؟ | حكايات أطفال، أكاديميون، جمهور عام |
 | **الوسيط** | أين؟ | مطبوع، موقع، فيلم، مسرح، سوشيال |
 | **اللغة** | بأي لغة؟ | عربية، إنجليزية، ثنائية |
-| **الخطر** | ما المحظور؟ | دين، طب، قانون، وقائع، أطفال |
+| **الخطر** | ما المحظور؟ | دين، طب، قانون، وقائع، حكايات أطفال |
 
 ### ١.١ بطاقة النية
 
@@ -80,7 +80,7 @@ risk: none | religious | medical | legal | factual | minors
 | صورة/بلاغة | `arabic-balagha-skill` | `arabic-writing-skill` | تحليل أم إنتاج |
 | قصة/رواية | `arabic-story-skill` | `arabic-balagha-skill` | الطول/الجمهور |
 | سيناريو/مسرح | `arabic-screenwriting-skill` | `arabic-story-skill` | الصيغة/الطول |
-| أطفال/يافعين | `arabic-children-story-skill` | `arabic-story-skill` | العمر/الشكل |
+| حكايات الأطفال واليافعين | `arabic-children-story-skill` | `arabic-story-skill` | العمر/الشكل |
 | مقال/عمود/خاطرة | `arabic-essay-skill` | `arabic-balagha-skill` | النوع/الطول |
 | بحث/رسالة | `arabic-academic-skill` | `arabic-editing-skill` | المستوى/التوثيق |
 | ترجمة | `arabic-tarjama-skill` | `arabic-writing-skill` | الاتجاه/المجال |
@@ -113,11 +113,11 @@ risk: none | religious | medical | legal | factual | minors
 - «حسّن الصورة» → `balagha`.
 - «دقّق المصادر» → `editing`.
 - «حوّلها إلى مشهد» → `screenwriting`.
-- «اكتبها للأطفال» → `children-story`.
+- «اكتبها حكاية للأطفال» → `children-story`.
 
 ### ٣.٤ الطلب المركّب يُقسَّم
 
-«اكتب قصة أطفال ثم سيناريو لها» = مهمتان:
+«اكتب حكاية أطفال ثم سيناريو لها» = مهمتان:
 
 ```text
 ① children-story → ② screenwriting
@@ -208,7 +208,7 @@ cautions:
 | الطلب | الأساسية | المساندة | ملاحظة |
 | :--- | :--- | :--- | :--- |
 | «اكتب قصة قصيرة عن الغربة» | `story` | — | اسأل الطول إن لزم |
-| «اكتب قصة للأطفال عن النظافة» | `children-story` | — | اسأل العمر |
+| «اكتب حكاية للأطفال عن النظافة» | `children-story` | — | اسأل العمر |
 | «اكتب مقالاً عن التعليم» | `essay` | — | اسأل نوع المقال |
 | «اكتب بحثاً عن الذكاء الاصطناعي» | `academic` | — | اسأل المستوى والتوثيق |
 | «اكتب سيناريو مشهد» | `screenwriting` | — | اسأل الفيلم/المسلسل |
@@ -232,7 +232,7 @@ cautions:
 | :--- | :--- | :--- |
 | `story` | الطول؟ الجمهور؟ النهاية؟ | يحدد البنية |
 | `screenwriting` | فيلم/مسلسل/مسرح؟ الطول؟ | يحدد الصيغة |
-| `children` | العمر؟ كتاب مصور/قصة؟ | يحدد المفردات |
+| `children-tales` | العمر؟ كتاب مصور/حكاية؟ | يحدد المفردات |
 | `essay` | مقال أدبي/رأي/عمود/خاطرة؟ | يحدد الصوت |
 | `academic` | المستوى؟ التوثيق؟ | يحدد البنية |
 | `tarjama` | الاتجاه؟ المجال؟ | يحدد المصطلح |
@@ -276,7 +276,7 @@ cautions:
 5. **لا تُحمِّل مهارة غير مسجّلة** في `registry.json`.
 6. **لا تَعِد بمهارة مخطط لها** كأنها منشورة.
 7. **لا تتجاوز سؤال المذهب** في الخطبة.
-8. **لا تتجاهل الخطر** في مواد الأطفال أو الوقائع.
+8. **لا تتجاهل الخطر** في حكايات الأطفال أو الوقائع.
 
 ---
 
@@ -292,7 +292,7 @@ cautions:
 | `arabic-balagha-skill` | بلاغة | <https://github.com/specailm5/arabic-balagha-skill> |
 | `arabic-story-skill` | قصة | <https://github.com/specailm5/arabic-story-skill> |
 | `arabic-screenwriting-skill` | سيناريو | <https://github.com/specailm5/arabic-screenwriting-skill> |
-| `arabic-children-story-skill` | أطفال | <https://github.com/specailm5/arabic-children-story-skill> |
+| `arabic-children-story-skill` | حكايات أطفال | <https://github.com/specailm5/arabic-children-story-skill> |
 | `arabic-essay-skill` | مقال | <https://github.com/specailm5/arabic-essay-skill> |
 | `arabic-academic-skill` | أكاديمي | <https://github.com/specailm5/arabic-academic-skill> |
 | `arabic-tarjama-skill` | ترجمة | <https://github.com/specailm5/arabic-tarjama-skill> |
@@ -300,7 +300,7 @@ cautions:
 | `arabic-media-skill` | إعلام | <https://github.com/specailm5/arabic-media-skill> |
 | `arabic-copywriting-skill` | إعلان | <https://github.com/specailm5/arabic-copywriting-skill> |
 
-**المخطط لها (ليست منشورة):** الشعر، الرواية الطويلة، المسرح، القصص المصورة، القصص التفاعلية.
+**المخطط لها (ليست منشورة):** الشعر، الرواية الطويلة، المسرح، الحكايات المصورة، الحكايات التفاعلية.
 
 ---
 

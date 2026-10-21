@@ -26,7 +26,7 @@
 | ٤ | `arabic-balagha-skill` | بلاغة/صورة/تحليل | <https://github.com/specailm5/arabic-balagha-skill> | <https://specailm5.github.io/arabic-balagha-skill/> | `npx skills add specailm5/arabic-balagha-skill -g -y` |
 | ٥ | `arabic-story-skill` | قصة/رواية/حبكة | <https://github.com/specailm5/arabic-story-skill> | <https://specailm5.github.io/arabic-story-skill/> | `npx skills add specailm5/arabic-story-skill -g -y` |
 | ٦ | `arabic-screenwriting-skill` | سيناريو/فيلم/مسرح | <https://github.com/specailm5/arabic-screenwriting-skill> | <https://specailm5.github.io/arabic-screenwriting-skill/> | `npx skills add specailm5/arabic-screenwriting-skill -g -y` |
-| ٧ | `arabic-children-story-skill` | أطفال/يافعين | <https://github.com/specailm5/arabic-children-story-skill> | <https://specailm5.github.io/arabic-children-story-skill/> | `npx skills add specailm5/arabic-children-story-skill -g -y` |
+| ٧ | `arabic-children-story-skill` | حكايات الأطفال واليافعين | <https://github.com/specailm5/arabic-children-story-skill> | <https://specailm5.github.io/arabic-children-story-skill/> | `npx skills add specailm5/arabic-children-story-skill -g -y` |
 | ٨ | `arabic-essay-skill` | مقال/عمود/خاطرة | <https://github.com/specailm5/arabic-essay-skill> | <https://specailm5.github.io/arabic-essay-skill/> | `npx skills add specailm5/arabic-essay-skill -g -y` |
 | ٩ | `arabic-academic-skill` | بحث/رسالة/توثيق | <https://github.com/specailm5/arabic-academic-skill> | <https://specailm5.github.io/arabic-academic-skill/> | `npx skills add specailm5/arabic-academic-skill -g -y` |
 | ١٠ | `arabic-tarjama-skill` | ترجمة/تعريب | <https://github.com/specailm5/arabic-tarjama-skill> | <https://specailm5.github.io/arabic-tarjama-skill/> | `npx skills add specailm5/arabic-tarjama-skill -g -y` |
@@ -46,7 +46,7 @@
 | `balagha` | بلاغة، استعارة، تشبيه، كناية | rhetoric, metaphor, imagery |
 | `story` | قصة، رواية، حبكة، شخصية | story, fiction, novel |
 | `screenwriting` | سيناريو، فيلم، مسلسل، مشهد | screenplay, film, series |
-| `children` | قصة أطفال، يافعين، كتاب مصور | children's story, picture book |
+| `children-tales` | حكايات أطفال، حكايات اليافعين، كتاب مصور | children's tales, picture book |
 | `essay` | مقال، عمود، افتتاحية، خاطرة | essay, column, op-ed |
 | `academic` | بحث، رسالة، أطروحة، توثيق | academic, thesis, citation |
 | `tarjama` | ترجمة، ترجم، تعريب | translate, translation |

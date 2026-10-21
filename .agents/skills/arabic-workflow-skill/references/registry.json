@@ -125,11 +125,11 @@
     {
       "id": "arabic-children-story-skill",
       "repo": "arabic-children-story-skill",
-      "title_ar": "أدب الطفل واليافعين",
+      "title_ar": "حكايات الأطفال واليافعين",
       "summary": "Children's and YA literature: picture books, stories, poems, songs, stage, media scripts, graded readers; age-matched language.",
-      "triggers_ar": ["قصة أطفال", "أدب الطفل", "يافعين", "كتاب مصور", "حكاية للأطفال", "مفردات الأطفال"],
-      "triggers_en": ["children's story", "picture book", "YA", "young adult", "kids story"],
-      "primary_for": ["children", "ya", "picture-book"],
+      "triggers_ar": ["حكاية أطفال", "حكايات الأطفال", "حكايات اليافعين", "كتاب مصور", "حكاية للأطفال", "مفردات الحكايات"],
+      "triggers_en": ["children's tales", "picture book", "young adult tales", "kids' tales"],
+      "primary_for": ["children-tales", "ya-tales", "picture-book"],
       "always_load": false,
       "final_pass": false,
       "requires_questions": ["age", "format", "length", "message"],
@@ -276,7 +276,7 @@
     },
     {
       "id": "arabic-comics-skill",
-      "title_ar": "كتابة القصص المصورة",
+      "title_ar": "كتابة الحكايات المصورة",
       "reason": "Panel and page pacing is a distinct craft.",
       "status": "planned",
       "triggers_ar": ["كوميكس", "قصة مصورة", "مانجا", "لوحة", "سيناريو مصور"],
@@ -284,7 +284,7 @@
     },
     {
       "id": "arabic-interactive-fiction-skill",
-      "title_ar": "القصص التفاعلية",
+      "title_ar": "الحكايات التفاعلية",
       "reason": "Branching narrative and state need a separate model.",
       "status": "planned",
       "triggers_ar": ["قصة تفاعلية", "لعبة نصية", "تفرعات", "خيارات", "رواية تفاعلية"],

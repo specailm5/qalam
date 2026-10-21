@@ -9,7 +9,7 @@
   <img alt="Meta skill" src="https://img.shields.io/badge/type-meta--skill-0F766E?style=flat-square">
 </p>
 
-**Arabic intent-router for AI agents** — loads first, reads the request, and selects the smallest correct set of Arabic skills: `«اكتب قصة للأطفال»` → `children-story` + `writing` + `grammar` + `editing`, not all thirteen. It contains the registry of every repository URL and install command. It does not write the content itself.
+**Arabic intent-router for AI agents** — loads first, reads the request, and selects the smallest correct set of Arabic skills: `«اكتب حكاية للأطفال»` → `children-story` + `writing` + `grammar` + `editing`, not all thirteen. It contains the registry of every repository URL and install command. It does not write the content itself.
 
 🔗 **الموقع المرجعي (السجل والتوجيه والأمثلة): [specailm5.github.io/arabic-workflow-skill](https://specailm5.github.io/arabic-workflow-skill/)**
 
@@ -125,7 +125,7 @@ cautions: ["حدث واحد، لا تقرير."]
 </tr>
 <tr>
 <td><code>arabic-children-story-skill</code></td>
-<td>أطفال/يافعين</td>
+<td>حكايات الأطفال واليافعين</td>
 <td><a href="https://github.com/specailm5/arabic-children-story-skill">GitHub</a></td>
 <td><a href="https://specailm5.github.io/arabic-children-story-skill/">docs</a></td>
 </tr>
@@ -169,7 +169,7 @@ cautions: ["حدث واحد، لا تقرير."]
 </table>
 <br clear="all">
 
-**المخطط لها:** الشعر، الرواية الطويلة، المسرح، القصص المصورة، القصص التفاعلية. لا تُحمَّل كأنها منشورة.
+**المخطط لها:** الشعر، الرواية الطويلة، المسرح، الحكايات المصورة، الحكايات التفاعلية. لا تُحمَّل كأنها منشورة.
 
 ---
 
@@ -276,7 +276,7 @@ cp -r "$src/." ~/.agents/skills/arabic-workflow-skill/
 </tr>
 <tr>
 <td><strong>الجمهور</strong></td>
-<td>أطفال، أكاديميون، عام؟</td>
+<td>حكايات أطفال، أكاديميون، عام؟</td>
 <td>يغيّر المهارة</td>
 </tr>
 <tr>
@@ -291,7 +291,7 @@ cp -r "$src/." ~/.agents/skills/arabic-workflow-skill/
 </tr>
 <tr>
 <td><strong>الخطر</strong></td>
-<td>دين، طب، قانون، أطفال؟</td>
+<td>دين، طب، قانون، حكايات أطفال؟</td>
 <td>يفرض أسئلة وتحذيرات</td>
 </tr>
 </tbody>
@@ -327,7 +327,7 @@ cp -r "$src/." ~/.agents/skills/arabic-workflow-skill/
 <td>اسأل الطول والنهاية</td>
 </tr>
 <tr>
-<td>«اكتب قصة للأطفال عن الصدق»</td>
+<td>«اكتب حكاية للأطفال عن الصدق»</td>
 <td><code>arabic-children-story-skill</code></td>
 <td>اسأل العمر</td>
 </tr>
