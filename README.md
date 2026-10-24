@@ -251,7 +251,7 @@ cp -r "$src/." ~/.agents/skills/qalam/
 
 ## 🤝 المساهمة
 
-نرحب بالمساهمات التي تحسّن السجل أو قواعد التوجيه. اقرأ [CONTRIBUTING.md](CONTRIBUTING.md) قبل فتح طلب سحب، والتزم بـ[قواعد السلوك](CODE_OF_CONDUCT.md).
+نرحب بالمساهمات التي تحسّن الأمثلة أو التوصيف أو التوثيق. اقرأ [CONTRIBUTING.md](CONTRIBUTING.md) قبل فتح طلب سحب، والتزم بـ[قواعد السلوك](CODE_OF_CONDUCT.md).
 
 ## 🛡️ الأمان
 
