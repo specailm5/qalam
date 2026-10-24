@@ -1,7 +1,6 @@
 # قلم (Qalam)
 
-**مهارة توجيه المهارات العربية**  
-(Arabic Skill Guide & Intent Router)
+**قلم** يقرأ طلبك العربي، ويختار المهارات التي تكتبه ويرتّبها — فلا تحتاج إلى حفظ أسماء المهارات ولا ترتيبها.
 
 <p align="center">
   <a href="https://github.com/specailm5/qalam/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/specailm5/qalam?style=flat-square"></a>
@@ -11,24 +10,58 @@
   <img alt="Meta skill" src="https://img.shields.io/badge/type-meta--skill-0F766E?style=flat-square">
 </p>
 
-**Arabic intent-router for AI agents** — loads first, reads the request, and selects the smallest correct set of Arabic skills: `«اكتب حكاية للأطفال»` → `children-story` + `writing` + `grammar` + `editing`, not all thirteen. It contains the registry of every repository URL and install command. It does not write the content itself.
-
 🔗 **الموقع المرجعي (السجل والتوجيه والأمثلة): [specailm5.github.io/qalam](https://specailm5.github.io/qalam/)**
 
-> مهارة **ميتا** لنماذج الذكاء الاصطناعي والمحررات الذكية (Codex، Claude Code، Antigravity IDE، VS Code Agent Harness): تُحمَّل أولاً، تحدد نية المستخدم، ثم تختار المهارات وترتّب تحميلها. **خط الأساس:** `arabic-writing-skill` (نبذ العَرَنْجِيَّة) + `arabic-grammar-skill`، و**التمرير النهائي:** `arabic-editing-skill`.
+> **English:** an intent router for the Arabic skill suite. It reads the request, picks the right skills, and loads them in order. Works with Claude Code, Codex, Antigravity and VS Code agent harnesses.
 
 ---
 
-## 📖 ما هي المهارة؟
+## 📖 ماذا يفعل قلم؟
 
-ليست مهارة كتابة. هي **موجّه**. المشكلة التي تحلها:
+تكتب طلبك كما تتكلم:
 
-- المنظومة فيها ١٣ مهارة، وتحميلها كلها يفسد الاختيار.
-- الطلب الواحد قد يحتمل أكثر من جنس.
-- بعض المهارات إلزامية (اللغة والنحو)، وبعضها لا يُحمَّل إلا عند الحاجة.
-- المستخدم لا يعرف أسماء المهارات ولا روابطها.
+> «اكتب حكاية للأطفال عن الصدق»
 
-فتُحمَّل هذه المهارة أولاً، وتخرج **بطاقة توجيه**:
+فيقرأ قلم الطلب، ويحدد: النوع (حكاية أطفال)، وما يلزمه من لغة ونحو، والتحرير قبل التسليم. ثم يعرض بطاقة التوجيه، ويسأل عن العمر — لأنه يغيّر النتيجة — ويبدأ العمل بالمهارة الصحيحة.
+
+**ما تحصل عليه:**
+
+- اختيار صحيح من أول مرة، بدل تجربة مهارة بعد أخرى.
+- أسئلة قليلة، لا تُسأل إلا عمّا يغيّر النتيجة.
+- ترتيب ثابت: لغة، ثم نحو، ثم المهارة، ثم تحرير.
+
+---
+
+## ⚡ ابدأ في دقيقة
+
+### المتطلبات
+
+- **وكيل يدعم Agent Skills** — Claude Code، Codex، Antigravity، أو VS Code agent harness.
+- **Node.js 22.20 أو أحدث مع `npx`** — لتشغيل مثبّت `skills`.
+- **مهارتا خط الأساس** — `arabic-writing-skill` و`arabic-grammar-skill`، ويُضاف إليهما `arabic-editing-skill` للتمرير النهائي.
+
+### ١. ثبّت قلم وخط الأساس
+
+```bash
+npx skills add specailm5/qalam -g -y
+npx skills add specailm5/arabic-writing-skill -g -y
+npx skills add specailm5/arabic-grammar-skill -g -y
+npx skills add specailm5/arabic-editing-skill -g -y
+```
+
+### ٢. تحقق من التثبيت
+
+```bash
+npx skills list
+```
+
+### ٣. أول نتيجة
+
+اكتب في وكيلك:
+
+> «اكتب قصة قصيرة عن الغربة»
+
+فيعرض قلم بطاقة التوجيه قبل أن يبدأ:
 
 ```yaml
 intent: short-story
@@ -36,16 +69,54 @@ primary: arabic-story-skill
 supporting: []
 baseline: [arabic-writing-skill, arabic-grammar-skill]
 final_pass: arabic-editing-skill
-order: [writing, grammar, story, editing]
-missing: [length, audience]
-cautions: ["حدث واحد، لا تقرير."]
+missing: [length, audience, ending]
+cautions: ["حدث واحد، لا تقرير.", "لا تشرح الفكرة في الخاتمة."]
 ```
 
-**القاعدة:** مهارة أساسية واحدة + خط الأساس + التحرير. والمساندة بالحاجة فقط.
+ثم يسأل عمّا ينقص (`missing`)، ويحمّل `arabic-story-skill` بعد خط الأساس، ويمرّر `arabic-editing-skill` قبل التسليم.
+
+### ثبّت المهارة النوعية التي تحتاجها فقط
+
+```bash
+npx skills add specailm5/arabic-story-skill -g -y
+npx skills add specailm5/arabic-children-story-skill -g -y
+npx skills add specailm5/arabic-essay-skill -g -y
+```
+
+<details>
+<summary>التثبيت اليدوي (بدون <code>npx</code>)</summary>
+
+**Windows**
+
+```powershell
+$src = "skills\qalam"
+
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\skills\qalam"
+Copy-Item -Recurse -Force "$src\*" "$env:USERPROFILE\.claude\skills\qalam\"
+
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills\qalam"
+Copy-Item -Recurse -Force "$src\*" "$env:USERPROFILE\.agents\skills\qalam\"
+```
+
+**macOS / Linux**
+
+```bash
+src=skills/qalam
+
+mkdir -p ~/.claude/skills/qalam
+cp -r "$src/." ~/.claude/skills/qalam/
+
+mkdir -p ~/.agents/skills/qalam
+cp -r "$src/." ~/.agents/skills/qalam/
+```
+
+**بدون بيئة برمجية:** انسخ محتوى [`skills/qalam/SKILL.md`](skills/qalam/SKILL.md) إلى التعليمات المخصصة أو System Prompt، وثبّت خط الأساس.
+
+</details>
 
 ---
 
-## ⚡ خط الأساس
+## 🧱 ما يُحمَّل مع كل طلب
 
 <table dir="rtl" align="right">
 <thead>
@@ -58,18 +129,18 @@ cautions: ["حدث واحد، لا تقرير."]
 <tbody>
 <tr>
 <td><code>arabic-writing-skill</code></td>
-<td><strong>إلزامية</strong></td>
+<td><strong>دائماً</strong></td>
 <td>كل نص عربي — الأسلوب ونبذ العَرَنْجِيَّة</td>
 </tr>
 <tr>
 <td><code>arabic-grammar-skill</code></td>
-<td><strong>إلزامية</strong></td>
+<td><strong>دائماً</strong></td>
 <td>كل نص عربي — النحو والإعراب</td>
 </tr>
 <tr>
 <td><code>arabic-editing-skill</code></td>
-<td><strong>تمرير نهائي</strong></td>
-<td>قبل التسليم — إلا إذا طُلبت مسودة سريعة</td>
+<td><strong>قبل التسليم</strong></td>
+<td>إلا إذا طُلبت مسودة سريعة</td>
 </tr>
 </tbody>
 </table>
@@ -77,7 +148,7 @@ cautions: ["حدث واحد، لا تقرير."]
 
 ---
 
-## 🗂️ سجل المهارات
+## 🗂️ المهارات المتاحة
 
 <table dir="rtl" align="right">
 <thead>
@@ -171,139 +242,63 @@ cautions: ["حدث واحد، لا تقرير."]
 </table>
 <br clear="all">
 
-**المخطط لها:** الشعر، الرواية الطويلة، المسرح، الحكايات المصورة، الحكايات التفاعلية. لا تُحمَّل كأنها منشورة.
+أمر التثبيت لكل مهارة: `npx skills add specailm5/<اسم-المهارة> -g -y`
+
+**قادم:** الشعر، الرواية الطويلة، المسرح، الحكايات المصورة، الحكايات التفاعلية.
 
 ---
 
-## 📂 بنية المستودع
-
-<pre dir="rtl"><code>
-qalam/
-│
-├── skills/qalam/          # المهارة (تركيب Agent Skills القياسي)
-│   ├── SKILL.md                           # قواعد التوجيه فقط
-│   ├── references/
-│   │   ├── registry.json                  # سجل الآلة: الروابط والتثبيت والمحفزات
-│   │   ├── skill_registry.md              # سجل بشري بكل الروابط
-│   │   ├── routing_rules.md               # التعارض والترتيب
-│   │   └── ambiguity.md                   # أسئلة فك الالتباس
-│   └── examples/
-│       ├── routing_cases.md               # عشرون حالة
-│       └── multi_skill_requests.md        # الطلبات المركّبة
-│
-├── docs/                                  # الموقع المرجعي (GitHub Pages)
-│
-├── .agents/skills/qalam/  # مسار Codex و Antigravity
-│
-└── .claude/skills/qalam/  # مسار Claude Code
-</code></pre>
-
----
-
-## 🚀 التثبيت
-
-### الطريقة الأسرع
-
-```bash
-npx skills add specailm5/qalam -g -y
-```
-
-### مع خط الأساس
-
-```bash
-npx skills add specailm5/qalam -g -y
-npx skills add specailm5/arabic-writing-skill -g -y
-npx skills add specailm5/arabic-grammar-skill -g -y
-npx skills add specailm5/arabic-editing-skill -g -y
-```
-
-ثم ثبّت المهارة النوعية التي تحتاجها فقط:
-
-```bash
-npx skills add specailm5/arabic-story-skill -g -y
-npx skills add specailm5/arabic-children-story-skill -g -y
-npx skills add specailm5/arabic-essay-skill -g -y
-```
-
-### التثبيت اليدوي (Windows)
-
-```powershell
-$src = "skills\qalam"
-
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\skills\qalam"
-Copy-Item -Recurse -Force "$src\*" "$env:USERPROFILE\.claude\skills\qalam\"
-
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.agents\skills\qalam"
-Copy-Item -Recurse -Force "$src\*" "$env:USERPROFILE\.agents\skills\qalam\"
-```
-
-### التثبيت اليدوي (macOS / Linux)
-
-```bash
-src=skills/qalam
-
-mkdir -p ~/.claude/skills/qalam
-cp -r "$src/." ~/.claude/skills/qalam/
-
-mkdir -p ~/.agents/skills/qalam
-cp -r "$src/." ~/.agents/skills/qalam/
-```
-
-### الاستخدام اليدوي
-
-انسخ محتوى [`skills/qalam/SKILL.md`](skills/qalam/SKILL.md) إلى **التعليمات المخصصة** أو **System Prompt**، وثبّت خط الأساس.
-
----
-
-## 🧭 كيف يقرر؟
+## 🧭 ما الذي يحدد الاختيار؟
 
 <table dir="rtl" align="right">
 <thead>
 <tr>
-<th align="right">الإشارة</th>
-<th align="right">السؤال</th>
-<th align="right">أثرها</th>
+<th align="right">ما تذكره</th>
+<th align="right">مثال</th>
+<th align="right">أثره</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>النوع</strong></td>
-<td>قصة، مقال، خبر، خطبة؟</td>
-<td>يحدد المهارة الأساسية</td>
+<td>قصة، مقال، خبر، خطبة</td>
+<td>المهارة الأساسية</td>
 </tr>
 <tr>
 <td><strong>المخرج</strong></td>
-<td>مسودة، نقد، تحرير، ترجمة؟</td>
-<td>يحدد هل الأساسية نوع أم تحرير</td>
+<td>مسودة، نقد، تحرير، ترجمة</td>
+<td>هل الأساسية نوع أم تحرير</td>
 </tr>
 <tr>
 <td><strong>الجمهور</strong></td>
-<td>حكايات أطفال، أكاديميون، عام؟</td>
+<td>أطفال، أكاديميون، عام</td>
 <td>يغيّر المهارة</td>
 </tr>
 <tr>
 <td><strong>الوسيط</strong></td>
-<td>مطبوع، فيلم، مسرح، سوشيال؟</td>
+<td>مطبوع، فيلم، مسرح، سوشيال</td>
 <td>يغيّر الصيغة</td>
 </tr>
 <tr>
 <td><strong>اللغة</strong></td>
-<td>عربية، إنجليزية، ثنائية؟</td>
+<td>عربية، إنجليزية، ثنائية</td>
 <td>يحدد الترجمة</td>
 </tr>
 <tr>
-<td><strong>الخطر</strong></td>
-<td>دين، طب، قانون، حكايات أطفال؟</td>
-<td>يفرض أسئلة وتحذيرات</td>
+<td><strong>المحظور</strong></td>
+<td>دين، طب، قانون، أطفال</td>
+<td>أسئلة وتحذيرات</td>
 </tr>
 </tbody>
 </table>
 <br clear="all">
 
+كلما ذكرت النوع والجمهور والطول، قلّت الأسئلة.
+
 ### ترتيب التحميل
 
 <pre dir="rtl"><code>
-① arabic-writing-skill      (خط الأساس اللغوي)
+① arabic-writing-skill      (اللغة والأسلوب)
 ② arabic-grammar-skill      (ضبط الجملة)
 ③ المهارة الأساسية          (النوع)
 ④ المساندة                  (عند الحاجة)
@@ -344,7 +339,7 @@ cp -r "$src/." ~/.agents/skills/qalam/
 <td>اسأل المستوى والتوثيق</td>
 </tr>
 <tr>
-<td>«اكتب سيناريو مشهد»</td>
+<td>«اكتب سيناريو مشهد مطاردة»</td>
 <td><code>arabic-screenwriting-skill</code></td>
 <td>اسأل فيلم/مسلسل</td>
 </tr>
@@ -354,58 +349,51 @@ cp -r "$src/." ~/.agents/skills/qalam/
 <td>اسأل الاتجاه</td>
 </tr>
 <tr>
-<td>«اكتب خطبة جمعة»</td>
+<td>«اكتب خطبة جمعة عن الصبر»</td>
 <td><code>arabic-khutba-skill</code></td>
 <td><strong>اسأل المذهب أولاً</strong></td>
 </tr>
 <tr>
-<td>«اكتب خبراً عن حادث»</td>
+<td>«اكتب خبراً عن انقطاع المياه»</td>
 <td><code>arabic-media-skill</code></td>
 <td>تحقق من المصادر</td>
 </tr>
 <tr>
-<td>«اكتب إعلاناً لتطبيق»</td>
+<td>«اكتب إعلاناً لتطبيق ميزانية»</td>
 <td><code>arabic-copywriting-skill</code></td>
 <td>اسأل الجمهور والدليل</td>
 </tr>
 <tr>
-<td>«حلّل هذه الاستعارة»</td>
+<td>«حلّل الاستعارة في هذا البيت»</td>
 <td><code>arabic-balagha-skill</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>«صحح النحو في هذا النص»</td>
+<td><code>arabic-grammar-skill</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>«حرّر هذا النص»</td>
+<td><code>arabic-editing-skill</code></td>
+<td>اسأل نوع التحرير</td>
+</tr>
+<tr>
+<td>«أعد صياغته بأسلوب أفضل»</td>
+<td><code>arabic-writing-skill</code></td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
 <br clear="all">
 
----
-
-## 🛠️ إضافة مهارة جديدة
-
-1. أضف سجلاً في `references/registry.json`.
-2. أضف صفاً في `references/skill_registry.md`.
-3. أضف صفاً في جدول `SKILL.md`.
-4. اختبر خمس حالات توجيه.
-5. ارفع `version` في frontmatter.
-
-**قاعدة:** لا تُضف مهارة بلا `repo_url` و`raw` و`install`. والمخطط لها تُسجَّل في `planned` بلا رابط.
+حالة «اكتب قصيدة» لا تُوجَّه إلى مهارة منشورة بعد. راجع [`examples/routing_cases.md`](skills/qalam/examples/routing_cases.md) لعشرين حالة كاملة.
 
 ---
 
-## ⚠️ الحدود
+## 📚 عن المشروع
 
-- **لا تكتب المحتوى**؛ التوجيه ليس إنشاءً.
-- **لا تفتي**؛ الخطبة تُعرض ولا تُفتي.
-- **لا تختلق مصادر** أو وقائع.
-- **لا تُقدّم استشارة طبية/قانونية.**
-- **لا تُحمِّل مهارة غير مسجّلة.**
-- **لا تَعِد بمهارة مخطط لها** كأنها منشورة.
-- المستخدم مسؤول عن مراجعة الناتج النهائي.
-
----
-
-## 📚 ملاحظة المصادر
-
-هذه **مهارة ميتا**، وليست مهارة كتابة. لا تُعلِّم جنساً أدبياً ولا نحواً ولا بلاغة، بل تُوجِّه إلى من يُعلِّم. لذلك لا تنطبق عليها قاعدة «٢–٤ كتب»؛ سجلّها هو `references/registry.json`، ومصادرها هي مهارات المنظومة نفسها.
+قلم لا يكتب النص؛ يختار المهارة التي تكتبه. سجلّه الكامل — الروابط وأوامر التثبيت والمحفّزات — في [`references/registry.json`](skills/qalam/references/registry.json).
 
 ---
 
