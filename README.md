@@ -1,34 +1,30 @@
 # قلم (Qalam)
 
-**قلم** يقرأ طلبك العربي، ويختار المهارات التي تكتبه ويرتّبها — فلا تحتاج إلى حفظ أسماء المهارات ولا ترتيبها.
+**مستودع مهارات للكتابة العربية** يضيفها إلى وكيلك الذكي، فتصحح أخطاءه في العربية، وتحسّن أسلوبه، وتكتب ما تطلبه: قصة، مقالاً، خبراً، خطبة، بحثاً، أو ترجمة.
 
 <p align="center">
   <a href="https://github.com/specailm5/qalam/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/specailm5/qalam?style=flat-square"></a>
   <a href="https://github.com/specailm5/qalam/commits/master"><img alt="Last commit" src="https://img.shields.io/github/last-commit/specailm5/qalam?style=flat-square"></a>
   <a href="https://specailm5.github.io/qalam/"><img alt="Docs" src="https://img.shields.io/badge/docs-live-brightgreen?style=flat-square"></a>
   <img alt="Agent Skills" src="https://img.shields.io/badge/Agent%20Skills-compatible-5B21B6?style=flat-square">
-  <img alt="Meta skill" src="https://img.shields.io/badge/type-meta--skill-0F766E?style=flat-square">
+  <img alt="Arabic" src="https://img.shields.io/badge/language-Arabic-0F766E?style=flat-square">
 </p>
 
-🔗 **الموقع المرجعي (السجل والتوجيه والأمثلة): [specailm5.github.io/qalam](https://specailm5.github.io/qalam/)**
+🔗 **الموقع المرجعي (الأنواع والأمثلة والتفاصيل): [specailm5.github.io/qalam](https://specailm5.github.io/qalam/)**
 
-> **English:** an intent router for the Arabic skill suite. It reads the request, picks the right skills, and loads them in order. Works with Claude Code, Codex, Antigravity and VS Code agent harnesses.
+> **English:** a repository of Arabic writing skills for AI agents. It fixes the model's Arabic errors, improves its style, and covers every kind of Arabic writing. Works with Claude Code, Codex, Antigravity and VS Code agent harnesses.
 
 ---
 
-## 📖 ماذا يفعل قلم؟
+## 📖 ماذا يعطيك قلم؟
 
-تكتب طلبك كما تتكلم:
+وكيلك يكتب بالعربية، لكنه يخطئ: يترجم حرفياً، ويستعمل لغة الإنشاءات، ويخلط بين أنواع الكتابة. بعد تثبيت قلم:
 
-> «اكتب حكاية للأطفال عن الصدق»
-
-فيقرأ قلم الطلب، ويحدد: النوع (حكاية أطفال)، وما يلزمه من لغة ونحو، والتحرير قبل التسليم. ثم يعرض بطاقة التوجيه، ويسأل عن العمر — لأنه يغيّر النتيجة — ويبدأ العمل بالمهارة الصحيحة.
-
-**ما تحصل عليه:**
-
-- اختيار صحيح من أول مرة، بدل تجربة مهارة بعد أخرى.
-- أسئلة قليلة، لا تُسأل إلا عمّا يغيّر النتيجة.
-- ترتيب ثابت: لغة، ثم نحو، ثم المهارة، ثم تحرير.
+- **أسلوب عربي طبيعي** — بعيد عن الترجمة الحرفية والعَرَنْجِيَّة.
+- **نحو وإعراب مضبوطان** — يصحح الجملة قبل أن يسلّمها.
+- **لكل نوع أصوله** — القصة لها بناؤها، والخبر له بنيته، والخطبة لها فقهها، والبحث له توثيقه.
+- **مراجعة قبل التسليم** — يصلك النص محرَّراً، لا مسودة تحتاج تصحيحاً منك.
+- **أسئلة قليلة** — لا يسأل إلا عمّا يغيّر النتيجة: العمر في حكاية الأطفال، والمذهب في الخطبة، والجمهور في الإعلان.
 
 ---
 
@@ -38,9 +34,8 @@
 
 - **وكيل يدعم Agent Skills** — Claude Code، Codex، Antigravity، أو VS Code agent harness.
 - **Node.js 22.20 أو أحدث مع `npx`** — لتشغيل مثبّت `skills`.
-- **مهارتا خط الأساس** — `arabic-writing-skill` و`arabic-grammar-skill`، ويُضاف إليهما `arabic-editing-skill` للتمرير النهائي.
 
-### ١. ثبّت قلم وخط الأساس
+### ١. ثبّت قلم مع أساس اللغة
 
 ```bash
 npx skills add specailm5/qalam -g -y
@@ -59,23 +54,11 @@ npx skills list
 
 اكتب في وكيلك:
 
-> «اكتب قصة قصيرة عن الغربة»
+> «اكتب حكاية للأطفال عن الصدق»
 
-فيعرض قلم بطاقة التوجيه قبل أن يبدأ:
+فيسألك عن العمر، ثم يكتب الحكاية بأسلوب عربي سليم، ويراجعها قبل أن يسلّمها.
 
-```yaml
-intent: short-story
-primary: arabic-story-skill
-supporting: []
-baseline: [arabic-writing-skill, arabic-grammar-skill]
-final_pass: arabic-editing-skill
-missing: [length, audience, ending]
-cautions: ["حدث واحد، لا تقرير.", "لا تشرح الفكرة في الخاتمة."]
-```
-
-ثم يسأل عمّا ينقص (`missing`)، ويحمّل `arabic-story-skill` بعد خط الأساس، ويمرّر `arabic-editing-skill` قبل التسليم.
-
-### ثبّت المهارة النوعية التي تحتاجها فقط
+### أضف الأنواع التي تحتاجها
 
 ```bash
 npx skills add specailm5/arabic-story-skill -g -y
@@ -110,200 +93,93 @@ mkdir -p ~/.agents/skills/qalam
 cp -r "$src/." ~/.agents/skills/qalam/
 ```
 
-**بدون بيئة برمجية:** انسخ محتوى [`skills/qalam/SKILL.md`](skills/qalam/SKILL.md) إلى التعليمات المخصصة أو System Prompt، وثبّت خط الأساس.
+**بدون بيئة برمجية:** انسخ محتوى [`skills/qalam/SKILL.md`](skills/qalam/SKILL.md) إلى التعليمات المخصصة أو System Prompt، ومعه مهارات الأساس.
 
 </details>
 
 ---
 
-## 🧱 ما يُحمَّل مع كل طلب
+## 🗂️ الأنواع
 
 <table dir="rtl" align="right">
 <thead>
 <tr>
-<th align="right">المهارة</th>
-<th align="right">الدور</th>
-<th align="right">متى</th>
+<th align="right">النوع</th>
+<th align="right">ما تحصل عليه</th>
+<th align="right">التفاصيل</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>arabic-writing-skill</code></td>
-<td><strong>دائماً</strong></td>
-<td>كل نص عربي — الأسلوب ونبذ العَرَنْجِيَّة</td>
-</tr>
-<tr>
-<td><code>arabic-grammar-skill</code></td>
-<td><strong>دائماً</strong></td>
-<td>كل نص عربي — النحو والإعراب</td>
-</tr>
-<tr>
-<td><code>arabic-editing-skill</code></td>
-<td><strong>قبل التسليم</strong></td>
-<td>إلا إذا طُلبت مسودة سريعة</td>
-</tr>
-</tbody>
-</table>
-<br clear="all">
-
----
-
-## 🗂️ المهارات المتاحة
-
-<table dir="rtl" align="right">
-<thead>
-<tr>
-<th align="right">المهارة</th>
-<th align="right">النية</th>
-<th align="right">المستودع</th>
-<th align="right">الموقع</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>arabic-writing-skill</code></td>
-<td>لغة/أسلوب</td>
-<td><a href="https://github.com/specailm5/arabic-writing-skill">GitHub</a></td>
+<td><strong>لغة وأسلوب</strong></td>
+<td>صياغة عربية سليمة، بلا ترجمة حرفية ولا عَرَنْجِيَّة</td>
 <td><a href="https://specailm5.github.io/arabic-writing-skill/">docs</a></td>
 </tr>
 <tr>
-<td><code>arabic-grammar-skill</code></td>
-<td>نحو/إعراب</td>
-<td><a href="https://github.com/specailm5/arabic-grammar-skill">GitHub</a></td>
+<td><strong>نحو وإعراب</strong></td>
+<td>ضبط الجملة وتصحيح الأخطاء النحوية</td>
 <td><a href="https://specailm5.github.io/arabic-grammar-skill/">docs</a></td>
 </tr>
 <tr>
-<td><code>arabic-editing-skill</code></td>
-<td>تحرير/تدقيق</td>
-<td><a href="https://github.com/specailm5/arabic-editing-skill">GitHub</a></td>
+<td><strong>تحرير</strong></td>
+<td>مراجعة نهائية للأسلوب والبنية قبل التسليم</td>
 <td><a href="https://specailm5.github.io/arabic-editing-skill/">docs</a></td>
 </tr>
 <tr>
-<td><code>arabic-balagha-skill</code></td>
-<td>بلاغة/صورة</td>
-<td><a href="https://github.com/specailm5/arabic-balagha-skill">GitHub</a></td>
+<td><strong>بلاغة</strong></td>
+<td>تحليل الصورة وصناعتها ونقدها</td>
 <td><a href="https://specailm5.github.io/arabic-balagha-skill/">docs</a></td>
 </tr>
 <tr>
-<td><code>arabic-story-skill</code></td>
-<td>قصة/رواية</td>
-<td><a href="https://github.com/specailm5/arabic-story-skill">GitHub</a></td>
+<td><strong>قصة</strong></td>
+<td>بناء القصة وشخصياتها ونهايتها</td>
 <td><a href="https://specailm5.github.io/arabic-story-skill/">docs</a></td>
 </tr>
 <tr>
-<td><code>arabic-screenwriting-skill</code></td>
-<td>سيناريو/مسرح</td>
-<td><a href="https://github.com/specailm5/arabic-screenwriting-skill">GitHub</a></td>
+<td><strong>سيناريو</strong></td>
+<td>مشاهد وحوار لفيلم أو مسلسل أو مسرح</td>
 <td><a href="https://specailm5.github.io/arabic-screenwriting-skill/">docs</a></td>
 </tr>
 <tr>
-<td><code>arabic-children-story-skill</code></td>
-<td>حكايات الأطفال واليافعين</td>
-<td><a href="https://github.com/specailm5/arabic-children-story-skill">GitHub</a></td>
+<td><strong>حكايات أطفال</strong></td>
+<td>حكاية مناسبة لعمر الطفل وجمهوره</td>
 <td><a href="https://specailm5.github.io/arabic-children-story-skill/">docs</a></td>
 </tr>
 <tr>
-<td><code>arabic-essay-skill</code></td>
-<td>مقال/خاطرة</td>
-<td><a href="https://github.com/specailm5/arabic-essay-skill">GitHub</a></td>
+<td><strong>مقال</strong></td>
+<td>مقال رأي أو عمود أو خاطرة</td>
 <td><a href="https://specailm5.github.io/arabic-essay-skill/">docs</a></td>
 </tr>
 <tr>
-<td><code>arabic-academic-skill</code></td>
-<td>بحث/توثيق</td>
-<td><a href="https://github.com/specailm5/arabic-academic-skill">GitHub</a></td>
+<td><strong>بحث</strong></td>
+<td>سؤال وفجوة وخطة وتوثيق أكاديمي</td>
 <td><a href="https://specailm5.github.io/arabic-academic-skill/">docs</a></td>
 </tr>
 <tr>
-<td><code>arabic-tarjama-skill</code></td>
-<td>ترجمة</td>
-<td><a href="https://github.com/specailm5/arabic-tarjama-skill">GitHub</a></td>
+<td><strong>ترجمة</strong></td>
+<td>ترجمة أمينة تحافظ على الأسلوب</td>
 <td><a href="https://specailm5.github.io/arabic-tarjama-skill/">docs</a></td>
 </tr>
 <tr>
-<td><code>arabic-khutba-skill</code></td>
-<td>خطبة</td>
-<td><a href="https://github.com/specailm5/arabic-khutba-skill">GitHub</a></td>
+<td><strong>خطبة</strong></td>
+<td>خطبتان على أصولهما، وفقه المذاهب، ونصوص متحققة</td>
 <td><a href="https://specailm5.github.io/arabic-khutba-skill/">docs</a></td>
 </tr>
 <tr>
-<td><code>arabic-media-skill</code></td>
-<td>إعلام</td>
-<td><a href="https://github.com/specailm5/arabic-media-skill">GitHub</a></td>
+<td><strong>إعلام</strong></td>
+<td>خبر وتقرير وتحقيق بتحقق من المصادر</td>
 <td><a href="https://specailm5.github.io/arabic-media-skill/">docs</a></td>
 </tr>
 <tr>
-<td><code>arabic-copywriting-skill</code></td>
-<td>إعلان</td>
-<td><a href="https://github.com/specailm5/arabic-copywriting-skill">GitHub</a></td>
+<td><strong>إعلان</strong></td>
+<td>نص تسويقي لجمهوره ووسيطه</td>
 <td><a href="https://specailm5.github.io/arabic-copywriting-skill/">docs</a></td>
 </tr>
 </tbody>
 </table>
 <br clear="all">
 
-أمر التثبيت لكل مهارة: `npx skills add specailm5/<اسم-المهارة> -g -y`
-
-**قادم:** الشعر، الرواية الطويلة، المسرح، الحكايات المصورة، الحكايات التفاعلية.
-
----
-
-## 🧭 ما الذي يحدد الاختيار؟
-
-<table dir="rtl" align="right">
-<thead>
-<tr>
-<th align="right">ما تذكره</th>
-<th align="right">مثال</th>
-<th align="right">أثره</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>النوع</strong></td>
-<td>قصة، مقال، خبر، خطبة</td>
-<td>المهارة الأساسية</td>
-</tr>
-<tr>
-<td><strong>المخرج</strong></td>
-<td>مسودة، نقد، تحرير، ترجمة</td>
-<td>هل الأساسية نوع أم تحرير</td>
-</tr>
-<tr>
-<td><strong>الجمهور</strong></td>
-<td>أطفال، أكاديميون، عام</td>
-<td>يغيّر المهارة</td>
-</tr>
-<tr>
-<td><strong>الوسيط</strong></td>
-<td>مطبوع، فيلم، مسرح، سوشيال</td>
-<td>يغيّر الصيغة</td>
-</tr>
-<tr>
-<td><strong>اللغة</strong></td>
-<td>عربية، إنجليزية، ثنائية</td>
-<td>يحدد الترجمة</td>
-</tr>
-<tr>
-<td><strong>المحظور</strong></td>
-<td>دين، طب، قانون، أطفال</td>
-<td>أسئلة وتحذيرات</td>
-</tr>
-</tbody>
-</table>
-<br clear="all">
-
-كلما ذكرت النوع والجمهور والطول، قلّت الأسئلة.
-
-### ترتيب التحميل
-
-<pre dir="rtl"><code>
-① arabic-writing-skill      (اللغة والأسلوب)
-② arabic-grammar-skill      (ضبط الجملة)
-③ المهارة الأساسية          (النوع)
-④ المساندة                  (عند الحاجة)
-⑤ arabic-editing-skill      (قبل التسليم)
-</code></pre>
+**قادم:** الشعر، الرواية الطويلة، المسرح، الحكايات المصورة والتفاعلية.
 
 ---
 
@@ -312,88 +188,64 @@ cp -r "$src/." ~/.agents/skills/qalam/
 <table dir="rtl" align="right">
 <thead>
 <tr>
-<th align="right">الطلب</th>
-<th align="right">الأساسية</th>
-<th align="right">ملاحظة</th>
+<th align="right">تكتب</th>
+<th align="right">ما يحدث</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>«اكتب قصة قصيرة عن الغربة»</td>
-<td><code>arabic-story-skill</code></td>
-<td>اسأل الطول والنهاية</td>
+<td>يسأل عن الطول والنهاية، ثم يكتب القصة</td>
 </tr>
 <tr>
 <td>«اكتب حكاية للأطفال عن الصدق»</td>
-<td><code>arabic-children-story-skill</code></td>
-<td>اسأل العمر</td>
+<td>يسأل عن العمر، ثم يكتب الحكاية</td>
 </tr>
 <tr>
 <td>«اكتب مقالاً عن التعليم»</td>
-<td><code>arabic-essay-skill</code></td>
-<td>اسأل نوع المقال</td>
+<td>يسأل عن نوع المقال، ثم يكتبه</td>
 </tr>
 <tr>
 <td>«اكتب بحثاً عن الذكاء الاصطناعي»</td>
-<td><code>arabic-academic-skill</code></td>
-<td>اسأل المستوى والتوثيق</td>
-</tr>
-<tr>
-<td>«اكتب سيناريو مشهد مطاردة»</td>
-<td><code>arabic-screenwriting-skill</code></td>
-<td>اسأل فيلم/مسلسل</td>
-</tr>
-<tr>
-<td>«ترجم هذا المقال»</td>
-<td><code>arabic-tarjama-skill</code></td>
-<td>اسأل الاتجاه</td>
+<td>يسأل عن المستوى والتوثيق، ثم يبني الخطة</td>
 </tr>
 <tr>
 <td>«اكتب خطبة جمعة عن الصبر»</td>
-<td><code>arabic-khutba-skill</code></td>
-<td><strong>اسأل المذهب أولاً</strong></td>
+<td>يسأل عن المذهب، ثم يكتب الخطبتين</td>
 </tr>
 <tr>
-<td>«اكتب خبراً عن انقطاع المياه»</td>
-<td><code>arabic-media-skill</code></td>
-<td>تحقق من المصادر</td>
-</tr>
-<tr>
-<td>«اكتب إعلاناً لتطبيق ميزانية»</td>
-<td><code>arabic-copywriting-skill</code></td>
-<td>اسأل الجمهور والدليل</td>
-</tr>
-<tr>
-<td>«حلّل الاستعارة في هذا البيت»</td>
-<td><code>arabic-balagha-skill</code></td>
-<td>—</td>
+<td>«ترجم هذا المقال»</td>
+<td>يسأل عن الاتجاه والمجال، ثم يترجم</td>
 </tr>
 <tr>
 <td>«صحح النحو في هذا النص»</td>
-<td><code>arabic-grammar-skill</code></td>
-<td>—</td>
+<td>يعيد النص مضبوطاً ويبيّن الأخطاء</td>
 </tr>
 <tr>
 <td>«حرّر هذا النص»</td>
-<td><code>arabic-editing-skill</code></td>
-<td>اسأل نوع التحرير</td>
+<td>يراجع الأسلوب والبنية قبل التسليم</td>
 </tr>
 <tr>
 <td>«أعد صياغته بأسلوب أفضل»</td>
-<td><code>arabic-writing-skill</code></td>
-<td>—</td>
+<td>يعيد الصياغة بأسلوب عربي طبيعي</td>
+</tr>
+<tr>
+<td>«حلّل الاستعارة في هذا البيت»</td>
+<td>يشرح الصورة ووجه الشبه وأثرها</td>
+</tr>
+<tr>
+<td>«اكتب إعلاناً لتطبيق ميزانية»</td>
+<td>يسأل عن الجمهور والدليل، ثم يكتب</td>
 </tr>
 </tbody>
 </table>
 <br clear="all">
 
-حالة «اكتب قصيدة» لا تُوجَّه إلى مهارة منشورة بعد. راجع [`examples/routing_cases.md`](skills/qalam/examples/routing_cases.md) لعشرين حالة كاملة.
-
 ---
 
 ## 📚 عن المشروع
 
-قلم لا يكتب النص؛ يختار المهارة التي تكتبه. سجلّه الكامل — الروابط وأوامر التثبيت والمحفّزات — في [`references/registry.json`](skills/qalam/references/registry.json).
+قلم مستودع مهارات: كل نوع حزمة مستقلة، وسجلّها الكامل — الروابط وأوامر التثبيت وما تحتاجه كل حزمة — في [`references/registry.json`](skills/qalam/references/registry.json). لمن يريد الجانب التقني: [`SKILL.md`](skills/qalam/SKILL.md) و[`routing_rules.md`](skills/qalam/references/routing_rules.md).
 
 ---
 
